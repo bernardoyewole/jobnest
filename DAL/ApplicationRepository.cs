@@ -21,22 +21,15 @@ namespace DAL
             if (applicationFormData != null)
             {
                 context.Applications.Add(applicationFormData);
-                context.SaveChanges();
-
-                // Update the Applied property of the job using SQL query
-                string updateQuery = "UPDATE Jobs SET Applied = 1 WHERE JobId = @JobId;";
-                SqlParameter jobIdParam = new SqlParameter("@JobId", applicationFormData.JobId);
-
-                // Execute the SQL query
-                int rowsAffected = context.Database.ExecuteSqlRaw(updateQuery, jobIdParam);
-                if (rowsAffected > 0)
+                //context.SaveChanges();
+                Job job = context.Jobs.Include(j => j.Applications).SingleOrDefault(j => j.JobId == applicationFormData.JobId);
+                if (job != null)
                 {
-                    return "success";
+                    job.Applications.Add(applicationFormData); // Add the new application to the collection
+                    context.SaveChanges(); // Commit changes to update the job's Applications collection
                 }
-                else
-                {
-                    return "Error updating Applied property";
-                }
+                return "success";
+
             }
             return "error";
         }

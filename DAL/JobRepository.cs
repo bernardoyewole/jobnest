@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Entities.Context;
 using Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -13,14 +14,7 @@ namespace DAL
         public List<Job> GetJobs()
         {
             JobNestDbContext context = new JobNestDbContext();
-            List<Job> jobs = new List<Job>();
-
-            foreach (Job job in context.Jobs)
-            {
-                jobs.Add(job);
-            }
-
-            return jobs;
+            return context.Jobs.Include(j => j.Applications).ToList();
         }
     }
 }

@@ -18,8 +18,8 @@ namespace Entities.Entities
         public int ApplicationId { get; set; }
 
         //[ForeignKey("ApplicationUser")]
-        //[ForeignKey("ApplicationUser")]
-        //public int UserId { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserId { get; set; }
 
         [ForeignKey("Job")]
         public int JobId { get; set; }

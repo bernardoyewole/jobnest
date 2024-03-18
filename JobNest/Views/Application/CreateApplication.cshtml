@@ -67,6 +67,11 @@
 </style>
 
 <script type="text/javascript">
+    $('form').submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        Add(); // Call your function to handle the form submission via AJAX
+    });
+
     $(document).ready(function () {
         $('#alertSuccess').hide();
         $('#alertDanger').hide();
@@ -75,6 +80,7 @@
     function Add() {
         var application = {
             JobId: $('#jobId').val(),
+            UserId: $('#userId').val(),
             FirstName: $('#fName').val(),
             LastName: $('#lName').val(),
             Email: $("#email").val(),
@@ -83,7 +89,7 @@
             ApplicationDate: new Date().toISOString()
         };
 
-        console.log(application);
+        // console.log(application);
 
         $.ajax({
             url: '/Application/CreateApplication',
@@ -97,9 +103,9 @@
                     $('#alertSuccess').text("Your application has been submitted successfully");
                     
                     // redirect to jobs page after 5 seconds
-                    setTimeout(function () {
-                        window.location.href = '/Application/Jobs';
-                    }, 5000);
+                    // setTimeout(function () {
+                    //     window.location.href = '/Application/Jobs';
+                    // }, 5000);
                 } else {
                     $('#alertDanger').show();
                     $('#alertDanger').text("Some error occured, try again!");
@@ -120,6 +126,7 @@
 
     <form>
         <input type="hidden" id="jobId" value="@TempData["JobId"]" />
+        <input type="hidden" id="userId" value="@TempData["UserId"]" />
 
         <label for="firstName">First Name</label>
         <input type="text" id="fName" name="firstName" required>

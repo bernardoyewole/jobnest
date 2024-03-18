@@ -21,5 +21,7 @@ namespace Entities.Entities
         public DateTime StartingDate { get; set; }
         public string Location { get; set; }
         public bool Applied { get; set; }
+
+        public ICollection<Application> Applications { get; set; }
     }
 }

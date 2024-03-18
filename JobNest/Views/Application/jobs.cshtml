@@ -92,14 +92,17 @@
     })
 
     function loadData() {
+        // var UserId = $('#userId').val(); // this element holds the user ID
+
         $.ajax({
             url: "/Application/GetJobs",
             type: "GET",
             contentType: "application/json",
             dataType: "json",
             success: function (response) {
-                console.log(response)
+                console.log(response.applications)
                 var row = '';
+                var UserId = $('#userId').val();
                 $.each(response, (key, item) => {
                     row += '<tr>'
                     row += '<td>' + item.position + '</td>';
@@ -107,14 +110,17 @@
                     row += '<td>' + item.salary + '</td>';
                     row += '<td>' + item.startingDate.split('T')[0] + '</td>';
                     row += '<td>' + item.location + '</td>';
+                    // Check if the current user has applied for this job
+                    console.log(UserId);
+                    var applied = item.applications.some(function (application) {
+                        return application.userId === UserId;
+                    });
 
-                    // Check if the job is already applied for
-                    if (item.applied) {
+                    if (applied) {
                         row += '<td><button disabled class="applied-btn">Applied</button></td>';
                     } else {
                         row += '<td><button onclick ="applyForJob(' + item.jobId + ')" class="apply-btn">Apply</button></td>';
                     }
-
                     row += '</tr>';
                 });
                 $('.tbody').html(row);
@@ -138,6 +144,8 @@
 </div>
 
 <table class="table">
+    <input type="hidden" id="userId" value="@TempData["UserId"]" />
+
     <thead>
         <tr>
             <th>Position</th>
