@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using Entities.Entities;
+using JobNest.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -43,14 +44,14 @@ namespace JobNest.Controllers
             return Json(jobs);
         }
 
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ApplicationController(UserManager<IdentityUser> userManager)
+        public ApplicationController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
 
-        public IdentityUser CurrentUser { get; set; }
+        public ApplicationUser CurrentUser { get; set; }
 
         // returns the view to allow user apply for a job
         public async Task<IActionResult> CreateApplication(int jobId)

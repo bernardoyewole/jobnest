@@ -17,7 +17,8 @@ namespace Entities.Entities
         [Key]
         public int ApplicationId { get; set; }
 
-        //[ForeignKey("User")]
+        //[ForeignKey("ApplicationUser")]
+        //[ForeignKey("ApplicationUser")]
         //public int UserId { get; set; }
 
         [ForeignKey("Job")]

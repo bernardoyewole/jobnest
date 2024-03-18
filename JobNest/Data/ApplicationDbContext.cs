@@ -16,7 +16,7 @@ namespace JobNest.Data
             optionsBuilder.UseSqlServer(@"Server=(LocalDb)\MSSQLLocalDB;Database=JobNest;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
-        //public DbSet<User> Users { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
         //public DbSet<Job> Jobs { get; set; }
         //public DbSet<Application> Applications { get; set; }
     }
