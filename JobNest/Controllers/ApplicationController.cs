@@ -10,7 +10,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace JobNest.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Applicant")]
     public class ApplicationController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -30,17 +30,6 @@ namespace JobNest.Controllers
             return View();
         }
 
-        // gets the applications and passes it to view
-        //[HttpGet]
-        //public IActionResult GetApplications()
-        //{
-        //    CurrentUser = await _userManager.GetUserAsync(User);
-
-        //    var applications = service.GetApplicationsService();
-        //    var applicationsForCurrentUser = applications.Where(x => x.UserId == CurrentUser.Id).ToList(); 
-        //    return Json(applicationsForCurrentUser);
-        //}
-
         [HttpGet]
         public async Task<IActionResult> GetApplications()
         {
@@ -50,7 +39,6 @@ namespace JobNest.Controllers
             var applicationsForCurrentUser = applications.Where(x => x.UserId == CurrentUser.Id).ToList();
             return Json(applicationsForCurrentUser);
         }
-
 
         // returns the view for job listings
         public IActionResult Jobs()

@@ -43,13 +43,13 @@ namespace DAL
                 context.Applications.Remove(applicationToBeDeleted);
 
                 // update the applied property of the job
-                var jobInvolved = context.Jobs.Where(x => x.JobId == applicationToBeDeleted.JobId).FirstOrDefault();
-                if (jobInvolved != null)
-                {
-                    jobInvolved.Applied = false;
-                    context.SaveChanges();
-                    return true;
-                }
+                //var jobInvolved = context.Jobs.Where(x => x.JobId == applicationToBeDeleted.JobId).FirstOrDefault();
+                //if (jobInvolved != null)
+                //{
+                //    jobInvolved.Applied = false;
+                //    context.SaveChanges();
+                //    return true;
+                //}
             }
             return false;
         }

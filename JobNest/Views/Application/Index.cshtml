@@ -81,7 +81,7 @@
                         // append job and application information
                         row += '<tr>'
                         row += '<td>' + (appliedJob ? appliedJob.position : '') + '</td>';
-                        row += '<td>' + (appliedJob ? appliedJob.name : '') + '</td>';
+                        row += '<td>' + (appliedJob ? appliedJob.companyName : '') + '</td>';
                         row += '<td>' + item.applicationReason + '</td>';
                         row += '<td>' + item.applicationDate.split('T')[0] + '</td>';
                         row += '<td><button onclick ="DeleteApplication(' + item.applicationId + ')" class="delete-btn">Withdraw</button></td>';
