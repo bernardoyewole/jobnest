@@ -89,23 +89,20 @@
             ApplicationDate: new Date().toISOString()
         };
 
-        // console.log(application);
-
         $.ajax({
             url: '/Application/CreateApplication',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(application),
             success: function (response) {
-                console.log(response);
                 if (response) {
                     $('#alertSuccess').show();
                     $('#alertSuccess').text("Your application has been submitted successfully");
                     
                     // redirect to jobs page after 5 seconds
-                    // setTimeout(function () {
-                    //     window.location.href = '/Application/Jobs';
-                    // }, 5000);
+                    setTimeout(function () {
+                        window.location.href = '/Application/Jobs';
+                    }, 3000);
                 } else {
                     $('#alertDanger').show();
                     $('#alertDanger').text("Some error occured, try again!");
@@ -144,8 +141,6 @@
             <label for="file">Choose file:</label>
             <input type="file" class="form-control-file" id="file" name="file" accept=".pdf,.doc,.docx" />
         </div>
-        @* <label for="resume">Resume/CV</label>
-        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"> *@
 
         <label for="joinUs" class="reason">Why do you want to join us?</label>
         <textarea id="joinUs" name="joinUs"></textarea>
