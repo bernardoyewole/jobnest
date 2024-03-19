@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.ViewModel
 {
-    public class EmployerJobsVM
+    public class EmployerJobVM
     {
         public string UserId { get; set; }
         public string EmployerName { get; set; }

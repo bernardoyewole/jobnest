@@ -63,7 +63,7 @@ namespace Entities.Migrations
 
                     b.HasIndex("JobId");
 
-                    b.ToTable("Applications");
+                    b.ToTable("Applications", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Entities.Job", b =>
@@ -98,7 +98,7 @@ namespace Entities.Migrations
 
                     b.HasKey("JobId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Jobs", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Entities.Application", b =>

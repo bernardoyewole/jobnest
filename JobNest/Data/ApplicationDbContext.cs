@@ -1,4 +1,5 @@
 ﻿using Entities.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,7 @@ namespace JobNest.Data
         }
 
         public DbSet<ApplicationUser> Users { get; set; }
-        //public DbSet<Job> Jobs { get; set; }
-        //public DbSet<Application> Applications { get; set; }
+
+        public DbSet<IdentityRole> Roles { get; set; }
     }
 }
